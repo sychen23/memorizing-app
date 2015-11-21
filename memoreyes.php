@@ -31,6 +31,7 @@ echo $id;
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
+		<script src="js/tickerbox.js"></script>
 		<!--
 		<script src="js/line-ticker.js"></script>
 		<script src="js/pull-module.js"></script>-->
@@ -42,7 +43,6 @@ echo $id;
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 <style>
 .ticker-box:hover {
-  background-color: orange;
   cursor: pointer;
 }
 .ticker-box {
@@ -52,6 +52,11 @@ echo $id;
 	margin-left: 20px;
 	margin-bottom: 20px;
 	font-color:black;
+	line-height: 100px;
+}
+
+.short {
+	width: 100px;
 }
 </style>
 		<script>
@@ -94,6 +99,13 @@ echo $id;
 				  emojis.push({unicode:"1f551", singular:"time", plural:"times"});
 				  emojis.push({unicode:"1f5fd", singular:"liberty", plural:"liberties"});
 				  emojis.push({unicode:"1f50a", singular:"sound", plural:"sounds"});
+				  emojis.push({unicode:"1f50b", singular:"fight", plural:"fights"});
+				  emojis.push({unicode:"1f50c", singular:"son", plural:"sons"});
+				  emojis.push({unicode:"1f50d", singular:"columbia", plural:"columbians"});
+				  emojis.push({unicode:"1f50e", singular:"forever", plural:"forevers"});
+				  emojis.push({unicode:"1f50f", singular:"alma", plural:"almas"});
+				  emojis.push({unicode:"1f50g", singular:"violet", plural:"violets"});
+				  emojis.push({unicode:"1f50h", singular:"you", plural:"you"});
 
 				  var outputArray = [];
 			  	  // var output = "";
@@ -147,7 +159,47 @@ echo $id;
    				 			}
    				 		}
 
-						if (hasEmoji == true)
+   				 		if (unicode === "1f50b")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/fight.jpg">';
+   				 		}
+   				 		else if (unicode === "1f304")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/valley.jpg">';
+   				 		}
+   				 		else if (unicode === "1f50c")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/sons.jpg">';
+   				 		}
+   				 		else if (unicode === "1f50d")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/columbia.jpg">';
+   				 		}
+   				 		else if (unicode === "1f50e")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/forever.jpg">';
+   				 		}
+   				 		else if (unicode === "1f638")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/lion.jpg">';
+   				 		}
+   				 		else if (unicode === "1f50f")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/alma.jpg">';
+   				 		}
+   				 		else if (unicode === "1f50g")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/violet.jpg">';
+   				 		}
+   				 		else if (unicode === "1f50h")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/you.jpg">';
+   				 		}
+   				 		else if (unicode === "1f36a")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/cookies.jpg">';
+   				 		}
+						else if (hasEmoji == true)
 						{
 							outputElement = outputElement +'<img draggable="false" class="emoji" src="http://twemoji.maxcdn.com/72x72/' + unicode + '.png">';
 						}
@@ -195,7 +247,7 @@ echo $id;
 						</div>
 						<nav id="nav">
 							<ul>
-								<li class="active"><a href="index.html">About</a></li>
+								<li class="active"><a href="index.html">Home</a></li>
 								<li><a href="index.html#extra">Popular</a></li>
 								<li><a href="index.html#footer">Create</a></li>
 								<!-- <li><a href="#">Memorize</a></li> -->
@@ -225,6 +277,11 @@ echo $id;
 										speechSynthesis.speak(msg);
 							  		}
 								</script>
+								<button class = "button" id = "line-by-line">Line-by-Line</button>
+								<button class = "button" id = "viewAllLines">View All Lines</button>
+								<button class = "button short" id = "prevLine">Prev</button>
+								<button class = "button short" id = "nextLine">Next</button>
+
 							</header>
 							<font size="6">
 							<div id="ticker">
