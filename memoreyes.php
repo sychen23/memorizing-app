@@ -88,24 +88,24 @@ echo $id;
 						
 				  var emojis = [];
 				  emojis.push({unicode:"1f339", singular:"rose", plural:"roses"});
-				  emojis.push({unicode:"1f36a", singular:"cookie", plural:"cookies"});
-				  emojis.push({unicode:"1f638", singular:"lion", plural:"lions"});
+				  emojis.push({unicode:"ad-cookies", singular:"cookie", plural:"cookies"});
+				  emojis.push({unicode:"ad-lion", singular:"lion", plural:"lions"});
 				  emojis.push({unicode:"1f305", singular:"day", plural:"days"});
 				  emojis.push({unicode:"1f307", singular:"tomorrow", plural:"tomorrows"});
 				  emojis.push({unicode:"1f464", singular:"shadow", plural:"shadows"});
-				  emojis.push({unicode:"1f304", singular:"valley", plural:"valleys"});
+				  emojis.push({unicode:"ad-valley", singular:"valley", plural:"valleys"});
 				  emojis.push({unicode:"1f4a3", singular:"war", plural:"wars"});
 				  emojis.push({unicode:"1f1fa-1f1f8", singular:"nation", plural:"nations"});
 				  emojis.push({unicode:"1f551", singular:"time", plural:"times"});
 				  emojis.push({unicode:"1f5fd", singular:"liberty", plural:"liberties"});
 				  emojis.push({unicode:"1f50a", singular:"sound", plural:"sounds"});
-				  emojis.push({unicode:"1f50b", singular:"fight", plural:"fights"});
-				  emojis.push({unicode:"1f50c", singular:"son", plural:"sons"});
-				  emojis.push({unicode:"1f50d", singular:"columbia", plural:"columbians"});
-				  emojis.push({unicode:"1f50e", singular:"forever", plural:"forevers"});
-				  emojis.push({unicode:"1f50f", singular:"alma", plural:"almas"});
-				  emojis.push({unicode:"1f50g", singular:"violet", plural:"violets"});
-				  emojis.push({unicode:"1f50h", singular:"you", plural:"you"});
+				  emojis.push({unicode:"ad-fight", singular:"fight", plural:"fights"});
+				  emojis.push({unicode:"ad-sons", singular:"son", plural:"sons"});
+				  emojis.push({unicode:"ad-columbia", singular:"columbia", plural:"columbians"});
+				  emojis.push({unicode:"ad-forever", singular:"forever", plural:"forevers"});
+				  emojis.push({unicode:"ad-alma", singular:"alma", plural:"almas"});
+				  emojis.push({unicode:"ad-violet", singular:"violet", plural:"violets"});
+				  emojis.push({unicode:"ad-you", singular:"you", plural:"you"});
 
 				  var outputArray = [];
 			  	  // var output = "";
@@ -146,7 +146,6 @@ echo $id;
    				 			else
    				 			{
 									outputElement = outputElement + "<b>" + words[j].fontcolor(fontcolor) + " " +"</b>";
-									// 			output = output + "<b>" + words[j].fontcolor(fontcolor) + " " +"</b>";
    				 			}
 
    				 			for (h = 0; h < emojis.length; h++)
@@ -159,43 +158,43 @@ echo $id;
    				 			}
    				 		}
 
-   				 		if (unicode === "1f50b")
+   				 		if (unicode === "ad-fight")
    				 		{
    				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/fight.jpg">';
    				 		}
-   				 		else if (unicode === "1f304")
+   				 		else if (unicode === "ad-valley")
    				 		{
    				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/valley.jpg">';
    				 		}
-   				 		else if (unicode === "1f50c")
+   				 		else if (unicode === "ad-sons")
    				 		{
    				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/sons.jpg">';
    				 		}
-   				 		else if (unicode === "1f50d")
+   				 		else if (unicode === "ad-columbia")
    				 		{
    				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/columbia.jpg">';
    				 		}
-   				 		else if (unicode === "1f50e")
+   				 		else if (unicode === "ad-forever")
    				 		{
    				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/forever.jpg">';
    				 		}
-   				 		else if (unicode === "1f638")
+   				 		else if (unicode === "ad-lion")
    				 		{
    				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/lion.jpg">';
    				 		}
-   				 		else if (unicode === "1f50f")
+   				 		else if (unicode === "ad-alma")
    				 		{
    				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/alma.jpg">';
    				 		}
-   				 		else if (unicode === "1f50g")
+   				 		else if (unicode === "ad-violet")
    				 		{
    				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/violet.jpg">';
    				 		}
-   				 		else if (unicode === "1f50h")
+   				 		else if (unicode === "ad-you")
    				 		{
    				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/you.jpg">';
    				 		}
-   				 		else if (unicode === "1f36a")
+   				 		else if (unicode === "ad-cookies")
    				 		{
    				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/cookies.jpg">';
    				 		}
