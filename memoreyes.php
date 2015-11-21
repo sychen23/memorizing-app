@@ -36,6 +36,8 @@ echo $id;
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 
 		<script>
+
+		var text = " ";
 			$(document).ready(function(){
 
 			  Parse.$ = jQuery;
@@ -48,7 +50,7 @@ echo $id;
 			    success: function(textModule) {
 			      var title  = textModule.get("title");
 			      var details = textModule.get("details");
-			      var text = textModule.get("text");
+			      text = textModule.get("text");
 
 			      var paragraph = text,
 			      	  sentences = paragraph.split('\n');
@@ -59,42 +61,74 @@ echo $id;
 			  	  var commonwordslist = "the,be,to,of,and,a,in,that,have,I,it,for,not,on,with,he,as,you,do,at,this,but,his,by,from,they,we,say,her,she,or,an,will,my,one,all,would,there,their,what,so,up,out,if,about,who,get,which,go,me,when,make,can,like,time,no,just,him,know,take,person,into,year,your,good,some,could,them,see,other,than,then,now,look,only,come,its,over,think,also,back,after,use,two,how,our,work,first,well,way,even,new,want,because,any,these,give,day,most,us,are",
 								commonwords = commonwordslist.split(",");
 
+				  var emojis = [];
+				  emojis.push({unicode:"1f339", singular:"rose", plural:"roses"});
+				  emojis.push({unicode:"1f36a", singular:"cookie", plural:"cookies"});
+				  emojis.push({unicode:"1f638", singular:"lion", plural:"lions"});
+				  emojis.push({unicode:"1f305", singular:"day", plural:"days"});
+				  emojis.push({unicode:"1f307", singular:"tomorrow", plural:"tomorrows"});
+				  emojis.push({unicode:"1f464", singular:"shadow", plural:"shadows"});
+				  emojis.push({unicode:"1f304", singular:"valley", plural:"valleys"});
+				  emojis.push({unicode:"1f4a3", singular:"war", plural:"wars"});
+				  emojis.push({unicode:"1f1fa-1f1f8", singular:"nation", plural:"nations"});
+				  emojis.push({unicode:"1f551", singular:"time", plural:"times"});
+				  emojis.push({unicode:"1f5fd", singular:"liberty", plural:"liberties"});
+				  emojis.push({unicode:"1f50a", singular:"sound", plural:"sounds"});
+				 
 			  	  var output = "";
 
 			  	  for (i = 0; i < sentences.length; i++) 
 			  	  { 
    				 		var words = sentences[i].split(" ");
    				 		var fontcolor = colors[Math.floor((Math.random() * colors.length) + 0)];
+   				 		var hasEmoji = false;
+   				 		var unicode = "";
 
    				 		for (j = 0; j < words.length; j++)
    				 		{
+   				 			var trimmed = words[j].replace(/[.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+
    				 			for (k = 0; k < colors.length; k++)
    				 			{
-   				 				if (words[j].toLowerCase() === colors[k].toLowerCase())
+   				 				if (trimmed.toLowerCase() === colors[k].toLowerCase())
    				 				{
    				 					fontcolor = colors[k];
    				 				}
    				 			}
+
    				 			var common = false;
    				 			for (g = 0; g < commonwords.length; g++)
    				 			{
-   				 				if (words[j].toLowerCase() === commonwords[g].toLowerCase())
+   				 				if (trimmed.toLowerCase() === commonwords[g].toLowerCase())
    				 				{
    				 					common=true;
    				 				}
    				 			}
-   				 			
+
    				 			if (common)
    				 			{
    				 				output = output + words[j].fontcolor(fontcolor) + " ";
    				 			}
    				 			else
    				 			{
-
    				 				output = output + "<b>" + words[j].fontcolor(fontcolor) + " " +"</b>";
+   				 			}
+
+   				 			for (h = 0; h < emojis.length; h++)
+   				 			{
+   				 				if (trimmed.toLowerCase() === emojis[h].singular || trimmed.toLowerCase() === emojis[h].plural)
+   				 				{
+   				 					hasEmoji = true;
+   				 					unicode = emojis[h].unicode;
+   				 				}
    				 			}
    				 		}
 
+   				 		output = output + " ";
+   				 		if (hasEmoji == true)
+   				 		{
+   				 			output = output +'<img draggable="false" class="emoji" src="http://twemoji.maxcdn.com/72x72/' + unicode + '.png">';
+   				 		}
    				 		output = output + "<br>" + "<br>";
 				  }
 
@@ -106,6 +140,9 @@ echo $id;
 			    error: function(object, error) {
 			      console.log("there was an error in retriving in pull-module.js");
 			    }
+
+
+
 			  });
 
 			});
@@ -140,6 +177,21 @@ echo $id;
 							<header class="major">
 								<h2 id="title"></h2>
 								<span class="byline" id="details"></span>
+								<button class = "button" onclick="speakText();">Read Text</button>
+									<script>
+									function speakText()
+							  		{
+							  			var msg = new SpeechSynthesisUtterance(text);
+							  			var voices = window.speechSynthesis.getVoices();
+										msg.voice = voices[10]; // Note: some voices don't support altering params
+										msg.voiceURI = 'native';
+										msg.volume = 1; // 0 to 1
+										msg.rate = .8; // 0.1 to 10
+										msg.pitch = 1; //0 to 2
+										msg.lang = 'en-US';
+										speechSynthesis.speak(msg);
+							  		}
+								</script>
 							</header>
 							<font size="6">
 							<div id="output">
@@ -147,7 +199,9 @@ echo $id;
 							</div>
 							</font>
 						</section>
+						
 					</div>
+					
 				<!-- /Page -->
 	<!-- Copyright -->
 	<!-- 	<div id="copyright">
