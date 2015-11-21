@@ -1,2 +1,4 @@
 # memorizing-app
-Lionhack Columbia University 2015 Lionheart Team
+Lionhack 2015
+
+Team Members: Jessica Xiang, Sharon Chen, Rachel Wu, Meghana Gudur, Cathy Sun
