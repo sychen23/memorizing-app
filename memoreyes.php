@@ -31,6 +31,10 @@ echo $id;
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
+<<<<<<< HEAD
+=======
+		<script src="js/tickerbox.js"></script>
+>>>>>>> 887c7e058b5dfaa50c3c20faffc36bbe9bdf8d04
 		<!--
 		<script src="js/line-ticker.js"></script>
 		<script src="js/pull-module.js"></script>-->
@@ -42,7 +46,6 @@ echo $id;
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 <style>
 .ticker-box:hover {
-  background-color: orange;
   cursor: pointer;
 }
 .ticker-box {
@@ -52,6 +55,11 @@ echo $id;
 	margin-left: 20px;
 	margin-bottom: 20px;
 	font-color:black;
+	line-height: 100px;
+}
+
+.short {
+	width: 100px;
 }
 </style>
 		<script>
@@ -80,20 +88,27 @@ echo $id;
 			  	  var commonwordslist = "the,be,to,of,and,a,in,that,have,I,it,for,not,on,with,he,as,you,do,at,this,but,his,by,from,they,we,say,her,she,or,an,will,my,one,all,would,there,their,what,so,up,out,if,about,who,get,which,go,me,when,make,can,like,time,no,just,him,know,take,person,into,year,your,good,some,could,them,see,other,than,then,now,look,only,come,its,over,think,also,back,after,use,two,how,our,work,first,well,way,even,new,want,because,any,these,give,day,most,us,are,is",
 								commonwords = commonwordslist.split(",");
 
-						
+
 				  var emojis = [];
 				  emojis.push({unicode:"1f339", singular:"rose", plural:"roses"});
-				  emojis.push({unicode:"1f36a", singular:"cookie", plural:"cookies"});
-				  emojis.push({unicode:"1f638", singular:"lion", plural:"lions"});
+				  emojis.push({unicode:"ad-cookies", singular:"cookie", plural:"cookies"});
+				  emojis.push({unicode:"ad-lion", singular:"lion", plural:"lions"});
 				  emojis.push({unicode:"1f305", singular:"day", plural:"days"});
 				  emojis.push({unicode:"1f307", singular:"tomorrow", plural:"tomorrows"});
 				  emojis.push({unicode:"1f464", singular:"shadow", plural:"shadows"});
-				  emojis.push({unicode:"1f304", singular:"valley", plural:"valleys"});
+				  emojis.push({unicode:"ad-valley", singular:"valley", plural:"valleys"});
 				  emojis.push({unicode:"1f4a3", singular:"war", plural:"wars"});
 				  emojis.push({unicode:"1f1fa-1f1f8", singular:"nation", plural:"nations"});
 				  emojis.push({unicode:"1f551", singular:"time", plural:"times"});
 				  emojis.push({unicode:"1f5fd", singular:"liberty", plural:"liberties"});
 				  emojis.push({unicode:"1f50a", singular:"sound", plural:"sounds"});
+				  emojis.push({unicode:"ad-fight", singular:"fight", plural:"fights"});
+				  emojis.push({unicode:"ad-sons", singular:"son", plural:"sons"});
+				  emojis.push({unicode:"ad-columbia", singular:"columbia", plural:"columbians"});
+				  emojis.push({unicode:"ad-forever", singular:"forever", plural:"forevers"});
+				  emojis.push({unicode:"ad-alma", singular:"alma", plural:"almas"});
+				  emojis.push({unicode:"ad-violet", singular:"violet", plural:"violets"});
+				  emojis.push({unicode:"ad-you", singular:"you", plural:"you"});
 
 				  var outputArray = [];
 			  	  // var output = "";
@@ -134,7 +149,6 @@ echo $id;
    				 			else
    				 			{
 									outputElement = outputElement + "<b>" + words[j].fontcolor(fontcolor) + " " +"</b>";
-									// 			output = output + "<b>" + words[j].fontcolor(fontcolor) + " " +"</b>";
    				 			}
 
    				 			for (h = 0; h < emojis.length; h++)
@@ -146,8 +160,47 @@ echo $id;
    				 				}
    				 			}
    				 		}
-
-						if (hasEmoji == true)
+   				 		if (unicode === "ad-fight")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/fight.jpg">';
+   				 		}
+   				 		else if (unicode === "ad-valley")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/valley.jpg">';
+   				 		}
+   				 		else if (unicode === "ad-sons")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/sons.jpg">';
+   				 		}
+   				 		else if (unicode === "ad-columbia")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/columbia.jpg">';
+   				 		}
+   				 		else if (unicode === "ad-forever")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/forever.jpg">';
+   				 		}
+   				 		else if (unicode === "ad-lion")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/lion.jpg">';
+   				 		}
+   				 		else if (unicode === "ad-alma")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/alma.jpg">';
+   				 		}
+   				 		else if (unicode === "ad-violet")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/violet.jpg">';
+   				 		}
+   				 		else if (unicode === "ad-you")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/you.jpg">';
+   				 		}
+   				 		else if (unicode === "ad-cookies")
+   				 		{
+   				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/cookies.jpg">';
+   				 		}
+						else if (hasEmoji == true)
 						{
 							outputElement = outputElement +'<img draggable="false" class="emoji" src="http://twemoji.maxcdn.com/72x72/' + unicode + '.png">';
 						}
@@ -195,7 +248,7 @@ echo $id;
 						</div>
 						<nav id="nav">
 							<ul>
-								<li class="active"><a href="index.html">About</a></li>
+								<li class="active"><a href="index.html">Home</a></li>
 								<li><a href="index.html#extra">Popular</a></li>
 								<li><a href="index.html#footer">Create</a></li>
 								<!-- <li><a href="#">Memorize</a></li> -->
@@ -225,6 +278,11 @@ echo $id;
 										speechSynthesis.speak(msg);
 							  		}
 								</script>
+								<button class = "button" id = "line-by-line">Line-by-Line</button>
+								<button class = "button" id = "viewAllLines">View All Lines</button>
+								<button class = "button short" id = "prevLine">Prev</button>
+								<button class = "button short" id = "nextLine">Next</button>
+
 							</header>
 							<font size="6">
 							<div id="ticker">

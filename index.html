@@ -26,62 +26,126 @@
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-wide.css" />
+		<style>
+		.navButtonLeft {
+			width:15px;
+			height:20px;
+			opacity:0.5;
+			display: inline-block;
+			margin-left:20%;
+			float:left;
+		}
+		.navButtonRight {
+			width:15px;
+			height:20px;
+			opacity:0.5;
+			display: inline-block;
+			margin-right:20%;
+			float:right;
+		}
+		#wrapper { z-index: 5000px;border: 2px solid red;overflow:hidden; width:auto;}
+		#col1 { width: 30%; float:left; background-color:pink;}
+		#col2 { width: 40%; float:center; background-color: orange;}
+		#col3 { width: 30%; float:right; background-color:magenta;}
+
+		</style>
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 
 		<script>
 		$(document).ready(function(){
 
-		Parse.$ = jQuery;
-		Parse.initialize('Qud6XC8J8PtKl4QQZDoi1bg4s5wqzewRlgjdJjwR', 'iBdSj2kUv4I9O6ZrfQydAAb3c0zVldhCB8pxRhwr');
+			Parse.$ = jQuery;
+			Parse.initialize('Qud6XC8J8PtKl4QQZDoi1bg4s5wqzewRlgjdJjwR', 'iBdSj2kUv4I9O6ZrfQydAAb3c0zVldhCB8pxRhwr');
 
-		var TextModule = Parse.Object.extend("TextModule"); 
-		var query = new Parse.Query(TextModule);
+			var TextModule = Parse.Object.extend("TextModule"); 
+			var query = new Parse.Query(TextModule);
+			query.find({
+				success: function(results) {
+					for (var i = 0; i < results.length; i++) {
 
-		query.get("27u6rKLrQy", {
-		success: function(textModule) {
-		  var title1  = textModule.get("title");
-		  var details1 = textModule.get("details");
-		  var text1 = textModule.get("text");
-		  $("#title1").html(title1);
-		  $("#details1").html(details1);
-		  $("#text1").html(text1);
-		}, 
-		error: function(object, error) {
-		  console.log("there was an error in retriving in pull-module.js");
-		}
+						//find the values for each text module from Parse
+						var textModule = results[i];
+						var title  = textModule.get("title");
+				  		var details = textModule.get("details");
+				  		var text = textModule.get("text");
+
+				  		//create the wrapper for the text module
+				  		var moduleSection = document.createElement("section");
+						moduleSection.setAttribute('class', '4u');
+						moduleSection.setAttribute('style', 'margin-bottom:20px;');
+						moduleSection.setAttribute('id', 'moduleSection' + i);
+
+
+						//make the children for the text module
+						var moduleImageA = document.createElement("a");
+						moduleImageA.setAttribute('class','image featured');
+						var moduleImage = document.createElement("img");
+						moduleImage.setAttribute('src', 'images/picture' + ((i % 3) + 1) + ".jpg");
+						var moduleBox = document.createElement("div");
+						moduleBox.setAttribute('class', 'box');
+						moduleBox.innerHTML = "<p id='title" + i + "'>" + title + "</p>";
+						var detailsBox = document.createElement("div");
+						detailsBox.setAttribute('class', 'details');
+						if (text.length <= 100) {
+							detailsBox.innerHTML = "<p id='text" + i + "'>" + text + "</p>";
+						} else {
+							detailsBox.innerHTML = "<p id='text" + i + "'>" + text.substring(0,100) + "...</p>";
+						}
+
+						var memorizeButton = document.createElement("a");
+						memorizeButton.setAttribute('href', 'memoreyes.php?id=' + textModule.id);
+						memorizeButton.setAttribute('class', 'button');
+						memorizeButton.innerHTML = "Memorize Now";
+
+						//append children into text module wrapper
+						moduleImageA.appendChild(moduleImage);
+						moduleSection.appendChild(moduleImageA);
+						moduleBox.appendChild(detailsBox);
+						moduleBox.appendChild(memorizeButton);						
+						moduleSection.appendChild(moduleBox);
+
+						document.getElementById("moduleSectionWrapper").appendChild(moduleSection);
+					}
+					var tripletIndex = 0;
+						displayModules(tripletIndex);
+
+						$("#nextModules").click(function(event){
+							event.preventDefault();
+							tripletIndex += 1;
+						    $("#prevModules").show();
+						    if (tripletIndex >= results.length - 3) {
+						      $("#nextModules").hide();
+						    }
+							displayModules(tripletIndex);
+						});
+						$("#prevModules").click(function(event){
+							event.preventDefault();
+							tripletIndex -= 1;
+							$("#nextModules").show();
+						    if (tripletIndex <= 0) {
+						      $("#prevModules").hide();
+						    }
+							displayModules(tripletIndex);
+						});						
+
+					     function displayModules(tripletIndex) {
+					     	var firstModule = tripletIndex;
+					     	for (var x = 0; x < results.length; x++) {
+					     		if (x == firstModule || x == firstModule + 1 || x == firstModule + 2) {
+					          		document.getElementById("moduleSection" + x).setAttribute("style", "display:inline-block;");
+					     		} else {
+					          		document.getElementById("moduleSection" + x).setAttribute("style", "display:none;");
+					     		}
+					     	}
+					    }
+				},
+				error: function(error) {
+				  console.log("there was an error in retriving in pull-module.js");
+				}
+			});
 		});
 
-		query.get("LZ1OBo9QEP", {
-		success: function(textModule) {
-		  var title2  = textModule.get("title");
-		  var details2 = textModule.get("details");
-		  var text2 = textModule.get("text");
-		  $("#title2").html(title2);
-		  $("#details2").html(details2);
-		  $("#text2").html(text2);
-		}, 
-		error: function(object, error) {
-		  console.log("there was an error in retriving in pull-module.js");
-		}
-		});
-
-		query.get("ffZOpIfzm5", {
-		success: function(textModule) {
-		  var title3  = textModule.get("title");
-		  var details3 = textModule.get("details");
-		  var text3 = textModule.get("text");
-		  $("#title3").html(title3);
-		  $("#details3").html(details3);
-		  $("#text3").html(text3);
-		}, 
-		error: function(object, error) {
-		  console.log("there was an error in retriving in pull-module.js");
-		}
-		});
-		
-
-		});
 </script>
 
 
@@ -99,7 +163,7 @@
 						</div>
 						<nav id="nav">
 							<ul>
-								<li class="active"><a href="index.html">Start</a></li>
+								<li class="active"><a href="index.html">Home</a></li>
 								<li><a href="#extra">Popular</a></li>
 								<li><a href="#footer">Create</a></li>
 								<!-- <li><a href="text-module.html">Memorize</a></li> -->
@@ -110,7 +174,7 @@
 				<!-- Banner -->
 					<div id="banner" class="container">
 						<section>
-							<p><strong>memorEYES</strong> <br> A new associative learning and interactive memorization experience. <br> Match your words, lines and facts to unique images with varying colors and moods. <br> memorEYES blends sensory learning with rote memorization to make your learning more productive. </p>
+							<p><strong><font size="10">memorEYES</font></strong> <br> make memorizing colorful<br>A new associative learning and interactive memorization experience. <br> Match your words, lines and facts to unique images with varying colors and moods. <br> memorEYES blends sensory learning with rote memorization to make your learning more productive. </p>
 							<a href="#extra" class="button medium">Start Memorizing</a>
 						</section>
 					</div>
@@ -119,8 +183,8 @@
 					<div id="extra">
 						<br><br>
 						<div class="container">
-							<div class="row no-collapse-1">
-								<section class="4u"> <a href="#" class="image featured"><img src="images/picture1.jpg" alt=""></a>
+							<div class="row no-collapse-1" id="moduleSectionWrapper">
+<!-- 								<section class="4u"> <a href="#" class="image featured"><img src="images/picture1.jpg" alt=""></a>
 									<div class="box">
 										<p id="title1">title1</p>
 										<p id="text1">text1</p>
@@ -137,9 +201,22 @@
 										<p id="title3">title3</p>
 										<p id="text3">text3</p>
 										<a href="memoreyes.php?id=ffZOpIfzm5" class="button">Memorize Now</a> </div>
-								</section>
-							
+								</section> -->
+
 						</div>
+						<br>
+						<div id='wrapper'>
+							<div id='col1'>
+								<a class="button navButtonLeft" id="prevModules" style='float:left;'><</a>								
+							</div>
+							<div id='col2'>
+							</div>
+							<div id='col3'>
+								<a class="button navButtonRight" id="nextModules" style='float:right;'>></a>								
+							</div>
+						</div>
+
+
 					</div>
 					<!-- Footer -->
 					<br>
@@ -170,7 +247,7 @@
 											<div class="12u">
 												<ul class="actions">
 													<li>
-														<input type="submit" id = "create" value="Memorize Now" class="button alt" />
+														<input type="submit" id = "create" value="MemorEYES Now" class="button alt" />
 													</li>
 												</ul>
 											</div>
