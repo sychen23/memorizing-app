@@ -1,7 +1,7 @@
 
 <?php
 $id = $_GET["id"]; //use to retrieve your post in javascript
-echo $id;  
+echo $id;
 ?>
 
 <!DOCTYPE HTML>
@@ -12,6 +12,11 @@ echo $id;
 -->
 <html>
 	<head>
+		<!--
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="../jquery.vticker.js"></script>
+-->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
 	<script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
@@ -27,24 +32,39 @@ echo $id;
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
-		<!--<script src="js/pull-module.js"></script>-->
+		<!--
+		<script src="js/line-ticker.js"></script>
+		<script src="js/pull-module.js"></script>-->
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-wide.css" />
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-
+<style>
+.ticker-box:hover {
+  background-color: orange;
+  cursor: pointer;
+}
+.ticker-box {
+	float: left;
+	width: 1000px;
+	height: 50px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	font-color:black;
+}
+</style>
 		<script>
 			$(document).ready(function(){
 
 			  Parse.$ = jQuery;
 			  Parse.initialize('Qud6XC8J8PtKl4QQZDoi1bg4s5wqzewRlgjdJjwR', 'iBdSj2kUv4I9O6ZrfQydAAb3c0zVldhCB8pxRhwr');
 
-			  var TextModule = Parse.Object.extend("TextModule"); 
+			  var TextModule = Parse.Object.extend("TextModule");
 			  var query = new Parse.Query(TextModule);
-
-			  query.get(<?php echo '"'.$id.'"'?>, {
+				moduleId = <?php echo '"'.$id.'"'?>;
+			  query.get(moduleId, {
 			    success: function(textModule) {
 			      var title  = textModule.get("title");
 			      var details = textModule.get("details");
@@ -59,10 +79,11 @@ echo $id;
 			  	  var commonwordslist = "the,be,to,of,and,a,in,that,have,I,it,for,not,on,with,he,as,you,do,at,this,but,his,by,from,they,we,say,her,she,or,an,will,my,one,all,would,there,their,what,so,up,out,if,about,who,get,which,go,me,when,make,can,like,time,no,just,him,know,take,person,into,year,your,good,some,could,them,see,other,than,then,now,look,only,come,its,over,think,also,back,after,use,two,how,our,work,first,well,way,even,new,want,because,any,these,give,day,most,us,are",
 								commonwords = commonwordslist.split(",");
 
-			  	  var output = "";
+						var outputArray = [];
 
-			  	  for (i = 0; i < sentences.length; i++) 
-			  	  { 
+			  	  for (i = 0; i < sentences.length; i++)
+			  	  {
+							var outputElement = ''
    				 		var words = sentences[i].split(" ");
    				 		var fontcolor = colors[Math.floor((Math.random() * colors.length) + 0)];
 
@@ -83,26 +104,31 @@ echo $id;
    				 					common=true;
    				 				}
    				 			}
-   				 			
+
    				 			if (common)
    				 			{
-   				 				output = output + words[j].fontcolor(fontcolor) + " ";
+									outputElement = outputElement + words[j].fontcolor(fontcolor) + " ";
    				 			}
    				 			else
    				 			{
-
-   				 				output = output + "<b>" + words[j].fontcolor(fontcolor) + " " +"</b>";
+									outputElement = outputElement + "<b>" + words[j].fontcolor(fontcolor) + " " +"</b>";
    				 			}
    				 		}
+							outputArray.push(outputElement);
 
-   				 		output = output + "<br>" + "<br>";
+							var tickerBox = document.createElement("div");
+							tickerBox.id = moduleId + "-line-" + i;
+							tickerBox.setAttribute("class", "ticker-box");
+							tickerBox.innerHTML = "<span><font size='6' color='"+ fontcolor + "'>" +
+								outputArray[i] + "</span>";
+							document.getElementById("ticker").setAttribute("style", "height:" + i * 60 + "px;margin-bottom:50px;");
+							document.getElementById("ticker").appendChild(tickerBox);
 				  }
 
 			      $("#title").html(title);
 			      $("#details").html(details);
 			      $("#text").html(text);
-			      $("#output").html(output);
-			    }, 
+			    },
 			    error: function(object, error) {
 			      console.log("there was an error in retriving in pull-module.js");
 			    }
@@ -142,8 +168,7 @@ echo $id;
 								<span class="byline" id="details"></span>
 							</header>
 							<font size="6">
-							<div id="output">
-								<p></p>
+							<div id="ticker">
 							</div>
 							</font>
 						</section>

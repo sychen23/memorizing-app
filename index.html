@@ -32,55 +32,53 @@
 		<script>
 		$(document).ready(function(){
 
-		Parse.$ = jQuery;
-		Parse.initialize('Qud6XC8J8PtKl4QQZDoi1bg4s5wqzewRlgjdJjwR', 'iBdSj2kUv4I9O6ZrfQydAAb3c0zVldhCB8pxRhwr');
+			Parse.$ = jQuery;
+			Parse.initialize('Qud6XC8J8PtKl4QQZDoi1bg4s5wqzewRlgjdJjwR', 'iBdSj2kUv4I9O6ZrfQydAAb3c0zVldhCB8pxRhwr');
 
-		var TextModule = Parse.Object.extend("TextModule"); 
-		var query = new Parse.Query(TextModule);
+			var TextModule = Parse.Object.extend("TextModule");
+			var query = new Parse.Query(TextModule);
 
-		query.get("27u6rKLrQy", {
-		success: function(textModule) {
-		  var title1  = textModule.get("title");
-		  var details1 = textModule.get("details");
-		  var text1 = textModule.get("text");
-		  $("#title1").html(title1);
-		  $("#details1").html(details1);
-		  $("#text1").html(text1);
-		}, 
-		error: function(object, error) {
-		  console.log("there was an error in retriving in pull-module.js");
-		}
-		});
+			query.get("27u6rKLrQy", {
+				success: function(textModule) {
+				  var title1  = textModule.get("title");
+				  var details1 = textModule.get("details");
+				  var text1 = textModule.get("text");
+				  $("#title1").html(title1);
+				  $("#details1").html(details1);
+				  $("#text1").html(text1);
+				},
+				error: function(object, error) {
+				  console.log("there was an error in retriving in pull-module.js");
+				}
+			});
 
-		query.get("LZ1OBo9QEP", {
-		success: function(textModule) {
-		  var title2  = textModule.get("title");
-		  var details2 = textModule.get("details");
-		  var text2 = textModule.get("text");
-		  $("#title2").html(title2);
-		  $("#details2").html(details2);
-		  $("#text2").html(text2);
-		}, 
-		error: function(object, error) {
-		  console.log("there was an error in retriving in pull-module.js");
-		}
-		});
+			query.get("LZ1OBo9QEP", {
+				success: function(textModule) {
+				  var title2  = textModule.get("title");
+				  var details2 = textModule.get("details");
+				  var text2 = textModule.get("text");
+				  $("#title2").html(title2);
+				  $("#details2").html(details2);
+				  $("#text2").html(text2);
+				},
+				error: function(object, error) {
+				  console.log("there was an error in retriving in pull-module.js");
+				}
+			});
 
-		query.get("ffZOpIfzm5", {
-		success: function(textModule) {
-		  var title3  = textModule.get("title");
-		  var details3 = textModule.get("details");
-		  var text3 = textModule.get("text");
-		  $("#title3").html(title3);
-		  $("#details3").html(details3);
-		  $("#text3").html(text3);
-		}, 
-		error: function(object, error) {
-		  console.log("there was an error in retriving in pull-module.js");
-		}
-		});
-		
-
+			query.get("ffZOpIfzm5", {
+				success: function(textModule) {
+				  var title3  = textModule.get("title");
+				  var details3 = textModule.get("details");
+				  var text3 = textModule.get("text");
+				  $("#title3").html(title3);
+				  $("#details3").html(details3);
+				  $("#text3").html(text3);
+				},
+				error: function(object, error) {
+				  console.log("there was an error in retriving in pull-module.js");
+				}
+			});
 		});
 </script>
 
@@ -138,7 +136,7 @@
 										<p id="text3">text3</p>
 										<a href="memoreyes.php?id=ffZOpIfzm5" class="button">Memorize Now</a> </div>
 								</section>
-							
+
 						</div>
 					</div>
 					<!-- Footer -->
@@ -179,7 +177,7 @@
 								</section>
 							</div>
 						</div>
-				
+
 							</div>
 						</div>
 					</div>
