@@ -1,8 +1,10 @@
 $(document).ready(function(){
-   $("#create").click(function(event){
-   	event.preventDefault();
+   $("#create").click(function(event){ 
+    event.preventDefault();
     Parse.$ = jQuery;
     Parse.initialize('Qud6XC8J8PtKl4QQZDoi1bg4s5wqzewRlgjdJjwR', 'iBdSj2kUv4I9O6ZrfQydAAb3c0zVldhCB8pxRhwr');
+
+    var newObjectID = 0; /* creates a new object id to be sent to the memoreyes.php file */
 
   	var TextModule = Parse.Object.extend("TextModule");
   	var textModule = new TextModule();
@@ -25,10 +27,12 @@ $(document).ready(function(){
                 closeOnConfirm: true
               },
               function() {
-                var memorizeLink = "index.html#extra";
+                newObjectID = textModule.id;
+                var memorizeLink = "memoreyes.php?id="+newObjectID;
                 var myNewmemorizeLink = encodeURI(memorizeLink);
                 window.location.href = memorizeLink;
               });
+              
             },
             error: function(projectData, error) {
               alert(error.message);
@@ -52,5 +56,8 @@ $(document).ready(function(){
           closeOnConfirm: true
         });
     }
+
+    
+
   });
 });

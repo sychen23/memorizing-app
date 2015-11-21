@@ -28,6 +28,63 @@
 			<link rel="stylesheet" href="css/style-wide.css" />
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+
+		<script>
+		$(document).ready(function(){
+
+		Parse.$ = jQuery;
+		Parse.initialize('Qud6XC8J8PtKl4QQZDoi1bg4s5wqzewRlgjdJjwR', 'iBdSj2kUv4I9O6ZrfQydAAb3c0zVldhCB8pxRhwr');
+
+		var TextModule = Parse.Object.extend("TextModule"); 
+		var query = new Parse.Query(TextModule);
+
+		query.get("27u6rKLrQy", {
+		success: function(textModule) {
+		  var title1  = textModule.get("title");
+		  var details1 = textModule.get("details");
+		  var text1 = textModule.get("text");
+		  $("#title1").html(title1);
+		  $("#details1").html(details1);
+		  $("#text1").html(text1);
+		}, 
+		error: function(object, error) {
+		  console.log("there was an error in retriving in pull-module.js");
+		}
+		});
+
+		query.get("LZ1OBo9QEP", {
+		success: function(textModule) {
+		  var title2  = textModule.get("title");
+		  var details2 = textModule.get("details");
+		  var text2 = textModule.get("text");
+		  $("#title2").html(title2);
+		  $("#details2").html(details2);
+		  $("#text2").html(text2);
+		}, 
+		error: function(object, error) {
+		  console.log("there was an error in retriving in pull-module.js");
+		}
+		});
+
+		query.get("ffZOpIfzm5", {
+		success: function(textModule) {
+		  var title3  = textModule.get("title");
+		  var details3 = textModule.get("details");
+		  var text3 = textModule.get("text");
+		  $("#title3").html(title3);
+		  $("#details3").html(details3);
+		  $("#text3").html(text3);
+		}, 
+		error: function(object, error) {
+		  console.log("there was an error in retriving in pull-module.js");
+		}
+		});
+		
+
+		});
+</script>
+
+
 	</head>
 	<body>
 
@@ -38,14 +95,14 @@
 					<div id="header" class="skel-panels-fixed">
 						<div id="logo">
 							<h1><a href="index.html">Memoreyes</a></h1>
-							<span class="tag">by Lionheart</span>
+							<!-- <span class="tag">by Lionheart</span> -->
 						</div>
 						<nav id="nav">
 							<ul>
-								<li class="active"><a href="index.html">Homepage</a></li>
-								<li><a href="#extra">Memorize</a></li>
+								<li class="active"><a href="index.html">Start</a></li>
+								<li><a href="#extra">Popular</a></li>
 								<li><a href="#footer">Create</a></li>
-								<li><a href="no-sidebar.html">Sign Up</a></li>
+								<!-- <li><a href="text-module.html">Memorize</a></li> -->
 							</ul>
 						</nav>
 					</div>
@@ -53,8 +110,8 @@
 				<!-- Banner -->
 					<div id="banner" class="container">
 						<section>
-							<p>This is <strong>Memoreyes</strong>. Start by entering text to memorize. <br> Memoreyes uses psychological concepts to tailor your memorization experience to be the most enjoyable and efficient as possible. <br>Finish by presenting your exquisite memory skills.</p>
-							<a href="#extra" class="button medium">View What I Want to Memorize</a>
+							<p><strong>memorEYES</strong> <br> A new associative learning and interactive memorization experience. <br> Match your words, lines and facts to unique images with varying colors and moods. <br> memorEYES blends sensory learning with rote memorization to make your learning more productive. </p>
+							<a href="#extra" class="button medium">Start Memorizing</a>
 						</section>
 					</div>
 
@@ -63,39 +120,25 @@
 						<br><br>
 						<div class="container">
 							<div class="row no-collapse-1">
-								<section class="4u"> <a href="#" class="image featured"><img src="images/pic01.jpg" alt=""></a>
+								<section class="4u"> <a href="#" class="image featured"><img src="images/picture1.jpg" alt=""></a>
 									<div class="box">
-										<p>Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum  wisi maecenas ligula.</p>
-										<a href="#" class="button">Read More</a> </div>
+										<p id="title1">title1</p>
+										<p id="text1">text1</p>
+										<a href="memoreyes.php?id=27u6rKLrQy" class="button">Memorize Now</a> </div>
 								</section>
-								<section class="4u"> <a href="#" class="image featured"><img src="images/pic02.jpg" alt=""></a>
+								<section class="4u"> <a href="#" class="image featured"><img src="images/picture2.jpg" alt=""></a>
 									<div class="box">
-										<p>Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum  wisi maecenas ligula.</p>
-										<a href="#" class="button">Read More</a> </div>
+										<p id="title2">title2</p>
+										<p id="text2">text2</p>
+										<a href="memoreyes.php?id=LZ1OBo9QEP" class="button">Memorize Now</a> </div>
 								</section>
-								<section class="4u"> <a href="#" class="image featured"><img src="images/pic03.jpg" alt=""></a>
+								<section class="4u"> <a href="#" class="image featured"><img src="images/picture3.jpg" alt=""></a>
 									<div class="box">
-										<p>Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum  wisi maecenas ligula.</p>
-										<a href="#" class="button">Read More</a> </div>
+										<p id="title3">title3</p>
+										<p id="text3">text3</p>
+										<a href="memoreyes.php?id=ffZOpIfzm5" class="button">Memorize Now</a> </div>
 								</section>
-							</div>
-							<div class="row no-collapse-1">
-								<section class="4u"> <a href="#" class="image featured"><img src="images/pic01.jpg" alt=""></a>
-									<div class="box">
-										<p>Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum  wisi maecenas ligula.</p>
-										<a href="#" class="button">Read More</a> </div>
-								</section>
-								<section class="4u"> <a href="#" class="image featured"><img src="images/pic02.jpg" alt=""></a>
-									<div class="box">
-										<p>Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum  wisi maecenas ligula.</p>
-										<a href="#" class="button">Read More</a> </div>
-								</section>
-								<section class="4u"> <a href="#" class="image featured"><img src="images/pic03.jpg" alt=""></a>
-									<div class="box">
-										<p>Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum  wisi maecenas ligula.</p>
-										<a href="#" class="button">Read More</a> </div>
-								</section>
-							</div>
+							
 						</div>
 					</div>
 					<!-- Footer -->
@@ -104,30 +147,30 @@
 							<div class="container">
 								<section>
 									<header class="major">
-										<h2>Create Memorization Module</h2>
-										<span class="byline">Enter text to memorize. This creates a memorization module.</span>
+										<h2>What would you like to memorize?</h2>
+										<span class="byline">Enter the text you would like to memorize:</span>
 									</header>
-									<form method="post" action="#"><!--change action to be equal to memoreyes.php-->
+									<form id="createForm"><!--change action to be equal to memoreyes.php-->
 										<div class="row half">
 											<div class="12u">
-												<input class="text" type="text" name="name" id="title" placeholder="Title" />
+												<input class="text" type="text" name="title" id="title" placeholder="Title" />
 											</div>
 										</div>
 										<div class="row half">
 											<div class="12u">
-												<input class="text" type="text" name="email" id="details" placeholder="Details" />
+												<input class="text" type="text" name="author" id="details" placeholder="Author" />
 											</div>
 										</div>
 										<div class="row half">
 											<div class="12u">
-												<textarea name="message" id="text" placeholder="Text"></textarea>
+												<textarea name="input" id="text" placeholder="Text"></textarea>
 											</div>
 										</div>
 										<div class="row half">
 											<div class="12u">
 												<ul class="actions">
 													<li>
-														<input type="submit" id = "create" value="Create Memorization Module" class="button alt" />
+														<input type="submit" id = "create" value="Memorize Now" class="button alt" />
 													</li>
 												</ul>
 											</div>
@@ -136,57 +179,11 @@
 								</section>
 							</div>
 						</div>
-				<!-- Main -->
-					<div id="main">
-						<div class="container">
-							<div class="row">
-
-								<!-- Content -->
-								<div class="6u">
-									<section>
-										<ul class="style">
-											<li class="fa fa-wrench">
-												<h3>Integer ultrices</h3>
-												<span>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Maecenas condimentum enim tincidunt risus accumsan.</span> </li>
-											<li class="fa fa-leaf">
-												<h3>Aliquam luctus</h3>
-												<span>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Maecenas condimentum enim tincidunt risus accumsan.</span> </li>
-										</ul>
-									</section>
-								</div>
-								<div class="6u">
-									<section>
-										<ul class="style">
-											<li class="fa fa-cogs">
-												<h3>Integer ultrices</h3>
-												<span>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Maecenas condimentum enim tincidunt risus accumsan.</span> </li>
-											<li class="fa fa-road">
-												<h3>Aliquam luctus</h3>
-												<span>In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Maecenas condimentum enim tincidunt risus accumsan.</span> </li>
-										</ul>
-									</section>
-								</div>
+				
 							</div>
 						</div>
 					</div>
 
 	</div>
-
-
-
-	<!-- Copyright -->
-		<div id="copyright">
-			<div class="container">
-				<div class="copyright">
-					<p>Memoreyes by <div id = 'company_name'>LIONHEART</div> Topping: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)</p>
-					<ul class="icons">
-						<li><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
-						<li><a href="#" class="fa fa-twitter"><span>Twitter</span></a></li>
-						<li><a href="#" class="fa fa-google-plus"><span>Google+</span></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
 	</body>
 </html>
