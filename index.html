@@ -30,58 +30,58 @@
 		.navButtonLeft {
 			width:15px;
 			height:20px;
-			opacity:0.5;
-			display: inline-block;
+			opacity:0.2;
+			display: block;
 			margin-left:20%;
 			float:left;
 		}
+
 		.navButtonRight {
 			width:15px;
 			height:20px;
-			opacity:0.5;
-			display: inline-block;
+			opacity:0.2;
+			display: block;
 			margin-right:20%;
 			float:right;
 		}
-		#wrapper { z-index: 5000px;border: 2px solid red;overflow:hidden; width:auto;}
-		#col1 { width: 30%; float:left; background-color:pink;}
-		#col2 { width: 40%; float:center; background-color: orange;}
-		#col3 { width: 30%; float:right; background-color:magenta;}
 
 		</style>
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 
 		<script>
-		$(document).ready(function(){
+		$(document).ready(function() {
 
 			Parse.$ = jQuery;
 			Parse.initialize('Qud6XC8J8PtKl4QQZDoi1bg4s5wqzewRlgjdJjwR', 'iBdSj2kUv4I9O6ZrfQydAAb3c0zVldhCB8pxRhwr');
 
-			var TextModule = Parse.Object.extend("TextModule"); 
+			var TextModule = Parse.Object.extend("TextModule");
 			var query = new Parse.Query(TextModule);
 			query.find({
 				success: function(results) {
+					/* Finds all the text modules and displays three at a time. */
+
 					for (var i = 0; i < results.length; i++) {
 
 						//find the values for each text module from Parse
 						var textModule = results[i];
 						var title  = textModule.get("title");
-				  		var details = textModule.get("details");
-				  		var text = textModule.get("text");
+			  		var details = textModule.get("details");
+			  		var text = textModule.get("text");
 
-				  		//create the wrapper for the text module
-				  		var moduleSection = document.createElement("section");
+			  		//create the wrapper for the text module
+			  		var moduleSection = document.createElement("section");
 						moduleSection.setAttribute('class', '4u');
 						moduleSection.setAttribute('style', 'margin-bottom:20px;');
 						moduleSection.setAttribute('id', 'moduleSection' + i);
 
-
-						//make the children for the text module
+						//make the image child for the text module
 						var moduleImageA = document.createElement("a");
 						moduleImageA.setAttribute('class','image featured');
 						var moduleImage = document.createElement("img");
 						moduleImage.setAttribute('src', 'images/picture' + ((i % 3) + 1) + ".jpg");
+
+						//make the details and button child for the text module
 						var moduleBox = document.createElement("div");
 						moduleBox.setAttribute('class', 'box');
 						moduleBox.innerHTML = "<p id='title" + i + "'>" + title + "</p>";
@@ -92,7 +92,6 @@
 						} else {
 							detailsBox.innerHTML = "<p id='text" + i + "'>" + text.substring(0,100) + "...</p>";
 						}
-
 						var memorizeButton = document.createElement("a");
 						memorizeButton.setAttribute('href', 'memoreyes.php?id=' + textModule.id);
 						memorizeButton.setAttribute('class', 'button');
@@ -102,46 +101,56 @@
 						moduleImageA.appendChild(moduleImage);
 						moduleSection.appendChild(moduleImageA);
 						moduleBox.appendChild(detailsBox);
-						moduleBox.appendChild(memorizeButton);						
+						moduleBox.appendChild(memorizeButton);
 						moduleSection.appendChild(moduleBox);
-
 						document.getElementById("moduleSectionWrapper").appendChild(moduleSection);
 					}
 					var tripletIndex = 0;
-						displayModules(tripletIndex);
+					displayModules(tripletIndex);
+					$("#prevModules").hide();
 
-						$("#nextModules").click(function(event){
-							event.preventDefault();
-							tripletIndex += 1;
-						    $("#prevModules").show();
-						    if (tripletIndex >= results.length - 3) {
-						      $("#nextModules").hide();
-						    }
-							displayModules(tripletIndex);
-						});
-						$("#prevModules").click(function(event){
-							event.preventDefault();
-							tripletIndex -= 1;
-							$("#nextModules").show();
-						    if (tripletIndex <= 0) {
-						      $("#prevModules").hide();
-						    }
-							displayModules(tripletIndex);
-						});						
 
-					     function displayModules(tripletIndex) {
-					     	var firstModule = tripletIndex;
-					     	for (var x = 0; x < results.length; x++) {
-					     		if (x == firstModule || x == firstModule + 1 || x == firstModule + 2) {
-					          		document.getElementById("moduleSection" + x).setAttribute("style", "display:inline-block;");
-					     		} else {
-					          		document.getElementById("moduleSection" + x).setAttribute("style", "display:none;");
-					     		}
-					     	}
+					$("#nextModules").click(function(event) {
+						/* Display next triplet of modules after user click. */
+
+						event.preventDefault();
+						tripletIndex += 1;
+					    $("#prevModules").show();
+					    if (tripletIndex * 3 >= results.length - 3) {
+					      $("#nextModules").hide();
 					    }
+						displayModules(tripletIndex);
+					});
+
+
+					$("#prevModules").click(function(event) {
+						/* Display previous triplet of modules after user click. */
+
+						event.preventDefault();
+						tripletIndex -= 1;
+						$("#nextModules").show();
+					    if (tripletIndex <= 0) {
+					      $("#prevModules").hide();
+					    }
+						displayModules(tripletIndex);
+					});
+
+
+			    function displayModules(tripletIndex) {
+						/* Displays triplet of modules. */
+
+			    	var firstModule = tripletIndex * 3;
+			    	for (var x = 0; x < results.length; x++) {
+			    		if (x == firstModule || x == firstModule + 1 || x == firstModule + 2) {
+			        		document.getElementById("moduleSection" + x).setAttribute("style", "display:inline-block;");
+			    		} else {
+			        		document.getElementById("moduleSection" + x).setAttribute("style", "display:none;");
+			    		}
+			    	}
+			    }
 				},
 				error: function(error) {
-				  console.log("there was an error in retriving in pull-module.js");
+				  alert("Error in retrieving modules from Parse: " + error.message);
 				}
 			});
 		});
@@ -184,39 +193,18 @@
 						<br><br>
 						<div class="container">
 							<div class="row no-collapse-1" id="moduleSectionWrapper">
-<!-- 								<section class="4u"> <a href="#" class="image featured"><img src="images/picture1.jpg" alt=""></a>
-									<div class="box">
-										<p id="title1">title1</p>
-										<p id="text1">text1</p>
-										<a href="memoreyes.php?id=27u6rKLrQy" class="button">Memorize Now</a> </div>
-								</section>
-								<section class="4u"> <a href="#" class="image featured"><img src="images/picture2.jpg" alt=""></a>
-									<div class="box">
-										<p id="title2">title2</p>
-										<p id="text2">text2</p>
-										<a href="memoreyes.php?id=LZ1OBo9QEP" class="button">Memorize Now</a> </div>
-								</section>
-								<section class="4u"> <a href="#" class="image featured"><img src="images/picture3.jpg" alt=""></a>
-									<div class="box">
-										<p id="title3">title3</p>
-										<p id="text3">text3</p>
-										<a href="memoreyes.php?id=ffZOpIfzm5" class="button">Memorize Now</a> </div>
-								</section> -->
-
-						</div>
+							</div>
 						<br>
 						<div id='wrapper'>
 							<div id='col1'>
-								<a class="button navButtonLeft" id="prevModules" style='float:left;'><</a>								
+								<a class="button navButtonLeft" id="prevModules" style='float:left;'><</a>
 							</div>
 							<div id='col2'>
 							</div>
 							<div id='col3'>
-								<a class="button navButtonRight" id="nextModules" style='float:right;'>></a>								
+								<a class="button navButtonRight" id="nextModules" style='float:right;'>></a>
 							</div>
 						</div>
-
-
 					</div>
 					<!-- Footer -->
 					<br>
@@ -256,7 +244,7 @@
 								</section>
 							</div>
 						</div>
-				
+
 							</div>
 						</div>
 					</div>

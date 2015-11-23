@@ -31,10 +31,7 @@ echo $id;
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
-<<<<<<< HEAD
-=======
 		<script src="js/tickerbox.js"></script>
->>>>>>> 887c7e058b5dfaa50c3c20faffc36bbe9bdf8d04
 		<!--
 		<script src="js/line-ticker.js"></script>
 		<script src="js/pull-module.js"></script>-->
@@ -200,25 +197,24 @@ echo $id;
    				 		{
    				 			outputElement = outputElement +'<img draggable="false" class="emoji" src="images/cookies.jpg">';
    				 		}
-						else if (hasEmoji == true)
-						{
-							outputElement = outputElement +'<img draggable="false" class="emoji" src="http://twemoji.maxcdn.com/72x72/' + unicode + '.png">';
-						}
-						else
-						{
-							outputElement = outputElement +'<img draggable="false" class="emoji" src="images/white-box.gif">';
-						}
-						outputArray.push(outputElement);
+							else if (hasEmoji == true)
+							{
+								outputElement = outputElement +'<img draggable="false" class="emoji" src="http://twemoji.maxcdn.com/72x72/' + unicode + '.png">';
+							}
+							else
+							{
+								outputElement = outputElement +'<img draggable="false" class="emoji" src="images/white-box.gif">';
+							}
+							outputArray.push(outputElement);
 
-						var tickerBox = document.createElement("div");
-						tickerBox.id = moduleId + "-line-" + i;
-						tickerBox.setAttribute("class", "ticker-box");
-						tickerBox.innerHTML = "<span><font size='6' color='"+ fontcolor + "'>" +
-							outputArray[i] + "</span>";
-						document.getElementById("ticker").setAttribute("style", "height:" + i * 120 + "px;margin-bottom:100px;");
-						document.getElementById("ticker").appendChild(tickerBox);
-				  }
-
+							var tickerBox = document.createElement("div");
+							tickerBox.id = moduleId + "-line-" + i;
+							tickerBox.setAttribute("class", "ticker-box");
+							tickerBox.innerHTML = "<span><font size='6' color='"+ fontcolor + "'>" +
+								outputArray[i] + "</span>";
+							document.getElementById("ticker").setAttribute("style", "height:" + i * 120 + "px;margin-bottom:100px;");
+							document.getElementById("ticker").appendChild(tickerBox);
+					  }
 			      $("#title").html(title);
 			      $("#details").html(details);
 			      $("#text").html(text);
@@ -226,13 +222,8 @@ echo $id;
 			    error: function(object, error) {
 			      console.log("there was an error in retriving in pull-module.js");
 			    }
-
-
-
 			  });
-
 			});
-
 		</script>
 	</head>
 	<body>
@@ -269,13 +260,13 @@ echo $id;
 							  		{
 							  			var msg = new SpeechSynthesisUtterance(text);
 							  			var voices = window.speechSynthesis.getVoices();
-										msg.voice = voices[10]; // Note: some voices don't support altering params
-										msg.voiceURI = 'native';
-										msg.volume = 1; // 0 to 1
-										msg.rate = .8; // 0.1 to 10
-										msg.pitch = 1; //0 to 2
-										msg.lang = 'en-US';
-										speechSynthesis.speak(msg);
+											msg.voice = voices[10]; // Note: some voices don't support altering params
+											msg.voiceURI = 'native';
+											msg.volume = 1; // 0 to 1
+											msg.rate = .8; // 0.1 to 10
+											msg.pitch = 1; //0 to 2
+											msg.lang = 'en-US';
+											speechSynthesis.speak(msg);
 							  		}
 								</script>
 								<button class = "button" id = "line-by-line">Line-by-Line</button>
