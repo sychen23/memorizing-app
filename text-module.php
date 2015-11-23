@@ -32,9 +32,6 @@ echo $id;
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
 		<script src="js/tickerbox.js"></script>
-		<!--
-		<script src="js/line-ticker.js"></script>
-		<script src="js/pull-module.js"></script>-->
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
