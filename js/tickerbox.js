@@ -14,6 +14,7 @@ $(document).ready(function() {
     loop_divs();
     display_box(0);
     currentLineNum = 0;
+    document.getElementById("ticker").setAttribute("style", "height:100px;margin-bottom:100px;");
     $("#line-by-line").hide();
     $("#prevLine").hide();
     $("#nextLine").show();
@@ -42,6 +43,9 @@ $(document).ready(function() {
     display_all();
     $("#line-by-line").show();
     $("#viewAllLines").hide();
+    $("prevLine").hide();
+    $("nextLine").hide();
+    document.getElementById("ticker").setAttribute("style", "height:" + (divArray.length - 1) * 120 + "px;margin-bottom:100px;");
   });
     function display_box(i) {
       for (var x = 0; x < divArray.length; x++) {
