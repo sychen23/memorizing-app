@@ -7,15 +7,16 @@ var idParameter = get('id');
 var currentLineNum = 0;
 $(document).ready(function() {
   $("#viewAllLines").hide();
-  $("#prevLine").hide();
+  document.getElementById("prevLine").setAttribute("style", "visibility:hidden;");
   $("#nextLine").hide();
   $("#line-by-line").click(function(event){
     event.preventDefault();
     loop_divs();
     display_box(0);
     currentLineNum = 0;
+    document.getElementById("ticker").setAttribute("style", "height:100px;margin-bottom:100px;");
     $("#line-by-line").hide();
-    $("#prevLine").hide();
+    document.getElementById("prevLine").setAttribute("style", "visibility:hidden;");
     $("#nextLine").show();
     $("#viewAllLines").show();
   });
@@ -24,14 +25,14 @@ $(document).ready(function() {
     currentLineNum -= 1;
     $("#nextLine").show();
     if (currentLineNum <= 0) {
-      $("#prevLine").hide();
+      document.getElementById("prevLine").setAttribute("style", "visibility:hidden;");
     }
     display_box(currentLineNum);
   });
   $("#nextLine").click(function(event){
     event.preventDefault();
     currentLineNum += 1;
-    $("#prevLine").show();
+    document.getElementById("prevLine").setAttribute("style", "visibility:visible;");
     if (currentLineNum >= divArray.length - 1) {
       $("#nextLine").hide();
     }
@@ -42,6 +43,9 @@ $(document).ready(function() {
     display_all();
     $("#line-by-line").show();
     $("#viewAllLines").hide();
+    document.getElementById("prevLine").setAttribute("style", "display:none;");
+    document.getElementById("nextLine").setAttribute("style", "display:none;");
+    document.getElementById("ticker").setAttribute("style", "height:" + (divArray.length - 1) * 120 + "px;margin-bottom:100px;");
   });
     function display_box(i) {
       for (var x = 0; x < divArray.length; x++) {
