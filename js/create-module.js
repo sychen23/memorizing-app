@@ -39,7 +39,7 @@ $(document).ready(function() {
               function() {
                 /* transition to memorization page of new text module */
 
-                var memorizeLink = "memoreyes.php?id=" + textModule.id;
+                var memorizeLink = "text-module.html?id=" + textModule.id;
                 var myNewmemorizeLink = encodeURI(memorizeLink);
                 window.location.href = memorizeLink;
               });

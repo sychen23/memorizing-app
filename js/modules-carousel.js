@@ -41,7 +41,7 @@ $(document).ready(function() {
           detailsBox.innerHTML = "<p id='text" + i + "'>" + text.substring(0,100) + "...</p>";
         }
         var memorizeButton = document.createElement("a");
-        memorizeButton.setAttribute('href', 'text-module.php?id=' + textModule.id);
+        memorizeButton.setAttribute('href', 'text-module.html?id=' + textModule.id);
         memorizeButton.setAttribute('class', 'button');
         memorizeButton.innerHTML = "Memorize Now";
 

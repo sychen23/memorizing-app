@@ -1,24 +1,14 @@
-function getUrlParameters(parameter, staticURL, decode){
-  var currLocation = (staticURL.length)? staticURL : window.location.search,
-      parArr = currLocation.split("?")[1].split("&"),
-      returnBool = true;
-  for(var i = 0; i < parArr.length; i++){
-        parr = parArr[i].split("=");
-        if(parr[0] == parameter){
-            return (decode) ? decodeURIComponent(parr[1]) : parr[1];
-            returnBool = true;
-        } else{
-            returnBool = false;
-        }
-  }
-  if(!returnBool) return false;
+function get(name){
+   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+      return decodeURIComponent(name[1]);
 }
-var idParameter = getUrlParameters("id", "", true);
+
+var idParameter = get('id');
 var currentLineNum = 0;
 $(document).ready(function() {
   $("#viewAllLines").hide();
   $("#prevLine").hide();
-  $("#nextLine").hide();  
+  $("#nextLine").hide();
   $("#line-by-line").click(function(event){
     event.preventDefault();
     loop_divs();
@@ -27,7 +17,7 @@ $(document).ready(function() {
     $("#line-by-line").hide();
     $("#prevLine").hide();
     $("#nextLine").show();
-    $("#viewAllLines").show();    
+    $("#viewAllLines").show();
   });
   $("#prevLine").click(function(event){
     event.preventDefault();
