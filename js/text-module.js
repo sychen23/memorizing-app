@@ -50,7 +50,6 @@ var text = "";
       emojis.push({unicode:"ad-you", singular:"you", plural:"you"});
 
       var outputArray = [];
-        // var output = "";
 
         for (i = 0; i < sentences.length; i++)
         {
