@@ -1,4 +1,5 @@
 function get(name){
+  //"what is the name of the test module?"
    if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
       return decodeURIComponent(name[1]);
 }
